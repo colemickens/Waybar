@@ -3,9 +3,11 @@
 #include <dbus-status-notifier-item.h>
 #include <gtkmm.h>
 #include <json/json.h>
-#include <filesystem>
+#include <experimental/filesystem>
 
 namespace waybar::modules::SNI {
+
+namespace fs = std::experimental::filesystem;
 
 class Item {
 public:

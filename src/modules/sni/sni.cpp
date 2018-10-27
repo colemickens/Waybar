@@ -3,6 +3,8 @@
 #include <iostream>
 #include <libdbusmenu-gtk/dbusmenu-gtk.h>
 
+namespace fs = std::experimental::filesystem;
+
 waybar::modules::SNI::Item::Item(std::string bn, std::string op,
   Glib::Dispatcher *dp, Json::Value config)
     : bus_name(bn), object_path(op), event_box(), icon_size(16),
@@ -187,7 +189,7 @@ void waybar::modules::SNI::Item::updateImage()
   if (!icon_name.empty()) {
     try {
       // Try to find icons specified by path and filename
-      if (std::filesystem::exists(icon_name)) {
+      if (fs::exists(icon_name)) {
         auto pixbuf = Gdk::Pixbuf::create_from_file(icon_name);
         if (pixbuf->gobj() != nullptr) {
           // An icon specified by path and filename may be the wrong size for
